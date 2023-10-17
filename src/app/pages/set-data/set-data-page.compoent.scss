@@ -1,0 +1,25 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  text-align: center;
+  margin: 3rem;
+}
+
+.textarea-field {
+  min-width: 30rem;
+
+  .textarea-input {
+    min-height: 20rem;
+  }
+}
+
+.error {
+  color: red;
+  margin-bottom: 1rem;
+}
+

@@ -1,0 +1,36 @@
+.project-page-wrapper {
+  display: flex;
+  align-items: flex-start;
+  padding: 0 1rem;
+}
+
+.projects-list {
+  height: 50rem;
+  border: 1px solid black;
+  overflow-y: scroll;
+  .project-card {
+    margin: 14px 14px;
+
+    &__author {
+      text-align: end;
+    }
+  }
+}
+
+.project-info {
+   width: 40rem;
+   margin: 5rem 10rem;
+
+   .title {
+    text-align: center;
+   }
+  .project-info__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .field {
+    margin-right: 1rem;
+  }
+}

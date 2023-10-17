@@ -1,0 +1,80 @@
+<section class="project-page-wrapper">
+  <div class="projects-list">
+    <mat-card *ngFor="let project of projects; trackBy: trackById" (click)="chooseProject(project.id)" class="project-card">
+      <mat-card-subtitle>{{project.startDate ? (project.startDate | dateWithString) : ''}} - {{project.endDate ? (project.endDate | dateWithString) : ''}}</mat-card-subtitle>
+      <mat-card-title class="project-card__title">{{project.subject}}</mat-card-title>
+      <span class="project-card__author">{{project.createdBy}}</span>
+    </mat-card>
+  </div>
+
+  <div *ngIf="choosedProject && !isChanging" class="project-info">
+      <h1 class="title">
+        {{choosedProject.subject}}
+      </h1>
+      <div class="project-info__info">
+        <div class="info-wrapper">
+          <span>Дата начала</span>
+          <p>{{choosedProject.startDate | date:"dd.MM.yyyy"}}</p>
+        </div>
+        <div class="info-wrapper">
+          <span>Дата окончания</span>
+          <p>{{choosedProject.endDate | date:"dd.MM.yyyy"}}</p>
+        </div>
+        <div class="info-wrapper">
+          <span>Автор</span>
+          <p>{{choosedProject.createdBy}}</p>
+        </div>
+      </div>
+      <div class="project-info__description">
+        <div class="info-wrapper">
+          <span>Описание</span>
+          <p>{{choosedProject.description}}</p>
+        </div>
+        <div class="info-wrapper">
+          <span>Стоимость</span>
+          <p>{{choosedProject.cost}}</p>
+        </div>
+        <div class="info-wrapper">
+          <app-btn btnName="Изменить" (onClickEvent)="changeProjectInfo()"></app-btn>
+        </div>
+      </div>
+  </div>
+
+  <div *ngIf="isChanging" class="project-info">
+    <form [formGroup]="form" (ngSubmit)="onChangeData()" class="form">
+      <mat-form-field class="field">
+        <mat-label>Название проекта</mat-label>
+        <input matInput formControlName="subject" class="input">
+      </mat-form-field>
+      <div class="project-info__info">
+        <mat-form-field class="field">
+          <mat-label>Дата начала</mat-label>
+          <input matInput [matDatepicker]="startDate" formControlName="startDate">
+          <mat-datepicker-toggle matIconSuffix [for]="startDate"></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="field">
+          <mat-label>Дата окончания</mat-label>
+          <input matInput [matDatepicker]="endDate" formControlName="endDate">
+          <mat-datepicker-toggle matIconSuffix [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker #endDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="field">
+          <mat-label>Автор</mat-label>
+          <input matInput formControlName="createdBy" class="input">
+        </mat-form-field>
+      </div>
+      <mat-form-field class="field">
+        <mat-label>Описание</mat-label>
+        <input matInput formControlName="description" class="input">
+      </mat-form-field>
+      <mat-form-field class="field">
+        <mat-label>Стоимость</mat-label>
+        <input matInput formControlName="cost" class="input">
+      </mat-form-field>
+      <app-btn type="submit" btnName="Сохранить изменения"></app-btn>
+    </form>
+  </div>
+</section>
+
+

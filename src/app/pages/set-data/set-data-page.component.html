@@ -1,0 +1,19 @@
+<section class="page-wrapper">
+  <h1 class="page-title">Введите JSON:</h1>
+  <form [formGroup]="form" (ngSubmit)="onSetData()" class="form">
+    <mat-form-field class="textarea-field">
+      <mat-label>Введите JSON</mat-label>
+      <textarea matInput formControlName="JSONField" cdkAutosizeMinRows="10" class="textarea-input"></textarea>
+    </mat-form-field>
+    <div class="error" *ngIf="form.controls['JSONField'].errors?.['invalidJSON']">
+      Ошибка в JSON структуре
+    </div>
+    <div class="error" *ngIf="form.controls['JSONField'].errors?.['required'] && form.controls['JSONField'].touched">
+      Поле должно быть заполнено
+    </div>
+    <div class="error" *ngIf="form.controls['JSONField'].errors?.['duplicatedId']">
+      В вашей структуре найден объект, ID которого уже сохранен
+    </div>
+    <app-btn type="submit" btnName="Сохранить"></app-btn>
+  </form>
+</section>

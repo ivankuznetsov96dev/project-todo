@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavLinksConstant } from './shared/constants/nav-links.const';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'project-todo';
+  public navLinks = NavLinksConstant;
 }
