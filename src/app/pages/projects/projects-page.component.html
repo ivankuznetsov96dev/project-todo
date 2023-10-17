@@ -1,11 +1,18 @@
 <section class="project-page-wrapper">
-  <div class="projects-list">
+  <div *ngIf="projects.length; else empty" class="projects-list">
     <mat-card *ngFor="let project of projects; trackBy: trackById" (click)="chooseProject(project.id)" class="project-card">
       <mat-card-subtitle>{{project.startDate ? (project.startDate | dateWithString) : ''}} - {{project.endDate ? (project.endDate | dateWithString) : ''}}</mat-card-subtitle>
       <mat-card-title class="project-card__title">{{project.subject}}</mat-card-title>
       <span class="project-card__author">{{project.createdBy}}</span>
     </mat-card>
   </div>
+
+  <ng-template #empty>
+    <div class="empty">
+      <h1>Список пуст. Заполните данные</h1>
+    </div>
+  </ng-template>
+
 
   <div *ngIf="choosedProject && !isChanging" class="project-info">
       <h1 class="title">
